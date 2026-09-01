@@ -1,22 +1,74 @@
-  @font-face {
-    font-family: 'TT Neoris';
-    src: url('TT Neoris Trial Regular.ttf') format('truetype');
-    /* This range tells the browser that this single file handles weights from 400 to 600 */
-    font-weight: 400 600; 
-    font-style: normal;
-  }
+.rov-banner {
+    background-color: #f0f0f0; 
+    border-bottom: 1px solid #d0d0d0;
+    padding: 6px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+}
 
-  /* 2. Apply it globally to your body text */
-  body {
-    font-family: 'TT Neoris', sans-serif;
-    font-weight: 400; /* Regular */
-  }
+.rov-banner-content {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 13px;
+}
 
-  /* 3. Assign your specific embedded weights */
-  .medium-text {
-    font-weight: 500; /* Medium */
-  }
+.rov-banner-flag {
+    margin-right: 12px;
+}
 
-  h2, strong, .demibold-text {
-    font-weight: 600; /* Demibold */
-  }
+.rov-banner-flag img {
+    height: 18px; /* Slightly larger flag */
+    vertical-align: middle;
+}
+
+.rov-banner-text p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.rov-banner-know {
+    margin-left: auto; /* Push to the far right */
+    position: relative;
+}
+
+.rov-banner-know-btn {
+    background: none;
+    border: none;
+    color: #0056b3; /* Government blue link color */
+    padding: 0;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+}
+
+.rov-banner-know-btn i {
+    margin-left: 6px;
+    font-size: 11px;
+}
+
+.rov-banner-know-details {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #d0d0d0;
+    padding: 15px;
+    width: 320px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.rov-banner-know-details p {
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+    color: #444;
+}
+
+.rov-banner-know-details:not([hidden]) {
+    display: block;
+}

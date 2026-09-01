@@ -16,15 +16,6 @@
     
 
     <style>
-        @font-face {
-  font-family: 'TT Neoris Trial';
-  /* Update 'font-file-name.ttf' to match your exact file name */
-  src: url('https://valudia.org/en/TT Neoris Trial Regular.ttf') format('truetype');
-  
-  /* Maps the font from Regular (400) through DemiBold (600) */
-  font-weight: 400 600;
-  font-style: normal;
-}
 
         :root{
     --govuk-breakpoint-mobile: 20rem;
@@ -67,22 +58,31 @@
     font-family:"GDS Transport",arial,sans-serif;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale
-}
-/*! Copyright (c) 2011 by Margaret Calvert & Henrik Kubel. All rights reserved. The font has been customised for exclusive use on gov.uk. This cut is not commercially available. */
-@font-face{
-    font-family:"GDS Transport";
-    font-style:normal;
-    font-weight:normal;
-    font-display:fallback;
-    src:url("/assets/fonts/light-94a07e06a1-v2.woff2") format("woff2"),url("/assets/fonts/light-f591b13f7d-v2.woff") format("woff")
-}
-@font-face{
-    font-family:"GDS Transport";
-    font-style:normal;
-    font-weight:bold;
-    font-display:fallback;
-    src:url("/assets/fonts/bold-b542beb274-v2.woff2") format("woff2"),url("/assets/fonts/bold-affa96571d-v2.woff") format("woff")
-}
+
+ @font-face {
+      font-family: 'TT Neoris Trial';
+      /* CHANGE 'your-exact-font-name.ttf' to your actual file name on GitHub */
+      src: url('https://valudia.org/TT Neoris Trial Regular.ttf') format('truetype');
+      font-weight: 400 600;
+      font-style: normal;
+    }
+
+    /* 2. APPLY THE FONT TO THE WHOLE PAGE */
+    body, p, span, div {
+      font-family: 'TT Neoris Trial', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-weight: 400; /* Default weight (Regular) */
+    }
+
+    /* 3. APPLY CUSTOM BOLD WEIGHTS TO SPECIFIC TEXT */
+    .govuk-heading-xl {
+      font-family: 'TT Neoris Trial', sans-serif !important;
+      font-weight: 600; /* Uses the DemiBold axis weight */
+    }
+
+    .govuk-footer__licence-description {
+      font-weight: 500; /* Uses the Medium axis weight */
+    }
+      
 @media print{
     .app-prose-scope a,.govuk-link{
         font-family:sans-serif
@@ -6956,22 +6956,6 @@ pre .language-markdown,pre .language-plaintext{
 .app-nunjucks-options-list h4{
     margin:0
 }
-body {
-  font-family: 'TT Neoris Trial', sans-serif;
-  font-weight: 400; 
-}
-
-/* Uses the Medium instance */
-.govuk-footer__licence-description {
-  font-weight: 500;
-}
-
-/* Uses the DemiBold instance for a clean bold title */
-.govuk-heading-xl {
-  font-family: 'TT Neoris Trial', sans-serif;
-  font-weight: 600; 
-}
-
 </style>
   
   <header class="govuk-template__header">

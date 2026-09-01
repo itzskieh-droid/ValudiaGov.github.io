@@ -1,42 +1,22 @@
-<style>
-  /* --- 1. DEFINE THE FONT FAMILY WEIGHTS --- */
-
-  /* Regular Weight */
   @font-face {
     font-family: 'TT Neoris';
     src: url('TT Neoris Trial Regular.ttf') format('truetype');
-    font-weight: 400; /* Standard numerical value for Regular */
+    /* This range tells the browser that this single file handles weights from 400 to 600 */
+    font-weight: 400 600; 
     font-style: normal;
   }
 
-  /* Medium Weight */
-  @font-face {
-    font-family: 'TT Neoris';
-    src: url('TT Neoris Trial Medium.ttf') format('truetype');
-    font-weight: 500; /* Standard numerical value for Medium */
-    font-style: normal;
-  }
-
-  /* Demibold Weight */
-  @font-face {
-    font-family: 'TT Neoris';
-    src: url('TT Neoris Trial Demibold.ttf') format('truetype');
-    font-weight: 600; /* Standard numerical value for Demibold/Semi-Bold */
-    font-style: normal;
-  }
-
-  /* --- 2. APPLY THE FONT GLOBALLY --- */
+  /* 2. Apply it globally to your body text */
   body {
     font-family: 'TT Neoris', sans-serif;
-    font-weight: 400; /* Sets your default body text to Regular */
+    font-weight: 400; /* Regular */
   }
 
-  /* --- 3. EXAMPLES OF HOW TO USE THE WEIGHTS --- */
-  h2 {
-    font-weight: 600; /* This will automatically load the Demibold file */
+  /* 3. Assign your specific embedded weights */
+  .medium-text {
+    font-weight: 500; /* Medium */
   }
 
-  .sub-heading {
-    font-weight: 500; /* This will automatically load the Medium file */
+  h2, strong, .demibold-text {
+    font-weight: 600; /* Demibold */
   }
-</style>

@@ -2,7 +2,7 @@
 <!-- saved from url=(0044)file:///C:/Users/Ethan/Downloads/index1.html -->
 <html lang="en" class="govuk-template"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <title>Default – Page template – Example - GOV.UK Design System</title>
+    <title>ValudiaGov - Under Construction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
 
@@ -6983,7 +6983,86 @@ pre .language-markdown,pre .language-plaintext{
 </style>
   
 </head>
-  <body class="govuk-template__body js-enabled govuk-frontend-supported js-enabled govuk-frontend-supported">
+  <body class="govuk-template__body js-enabled govuk-frontend-supported js-enabled govuk-frontend-supported"
+      <div class="rov-banner" role="banner">
+  <div class="rov-banner-content">
+    <div class="rov-banner-left-side">
+      <div class="rov-banner-flag">
+        <img src="CoaMaker (2).png" alt="Republic of Valudia Flag">
+      </div>
+      <div class="rov-banner-text">
+        <p>An official website of the Valudian government</p>
+      </div>
+    </div>
+    
+    <div class="rov-banner-know">
+      <button class="rov-banner-know-btn" aria-expanded="false" aria-controls="rov-banner-know-details">
+        Here's how you know <i class="fas fa-chevron-down" id="banner-chevron" style="transform: rotate(0deg);"></i>
+      </button>
+      
+      <div class="rov-banner-know-details" id="rov-banner-know-details" hidden="">
+        <div class="rov-details-inner-wrapper">
+          
+          <div class="rov-details-column">
+            <div class="rov-details-icon-circle blue-icon">
+              <i class="fas fa-landmark"></i>
+            </div>
+            <div class="rov-details-text-block">
+              <h3>Official domains use .org</h3>
+              <p>Official government organizational websites belong to recognized administrative agencies under the authority of the Republic of Valudia.</p>
+            </div>
+          </div>
+
+          <div class="rov-details-column">
+            <div class="rov-details-icon-circle green-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div class="rov-details-text-block">
+              <h3>Secure websites use HTTPS</h3>
+              <p>A <strong>lock</strong> ( <i class="fas fa-lock mini-inline-lock"></i> ) or <strong>https://</strong> means you've safely connected to an official, secure network. Transfer credentials safely.</p>
+              <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bannerBtn = document.querySelector('.rov-banner-know-btn');
+    const bannerDetails = document.getElementById('rov-banner-know-details');
+    const chevron = document.getElementById('banner-chevron');
+
+    if (bannerBtn && bannerDetails) {
+      bannerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const isExpanded = bannerBtn.getAttribute('aria-expanded') === 'true';
+        bannerBtn.setAttribute('aria-expanded', !isExpanded);
+        
+        if (isExpanded) {
+          bannerDetails.setAttribute('hidden', '');
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        } else {
+          bannerDetails.removeAttribute('hidden');
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+
+      // Optional: Close dropdown safely if user clicks outside of it
+      document.addEventListener('click', (e) => {
+        if (!bannerBtn.contains(e.target) && !bannerDetails.contains(e.target)) {
+          bannerDetails.setAttribute('hidden', '');
+          bannerBtn.setAttribute('aria-expanded', 'false');
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+  });
+</script>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  </body>
     <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
 
         <a href="https://design-system.service.gov.uk/styles/page-template/default/#main-content" class="govuk-skip-link" data-module="govuk-skip-link" data-govuk-skip-link-init="">Skip to main content</a>
@@ -6999,7 +7078,7 @@ pre .language-markdown,pre .language-plaintext{
   <div class="govuk-header__container govuk-width-container">
     <div class="govuk-header__logo">
           <a class="govuk-header__link govuk-header__link--homepage">
-  <img src="./valudiagov_files/valudiagov2.png" alt="Your Service Logo" style="height: 50px; width: auto; vertical-align: middle;">
+  <img src="valudiagov2.png" alt="Your Service Logo" style="height: 50px; width: auto; vertical-align: middle;">
 </a>
         
       </a>
@@ -7027,10 +7106,10 @@ pre .language-markdown,pre .language-plaintext{
     <div class="govuk-footer__meta">
       <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
           <a class="govuk-header__link govuk-header__link--homepage">
-  <img src="./valudiagov_files/valudiagov3.png" alt="Your Service Logo" style="height: 50px; width: auto; vertical-align: middle;">
+  <img src="valudiagov3.png" alt="Your Service Logo" style="height: 50px; width: auto; vertical-align: middle;">
 </a>
           <span style="font-family: 'TT Neoris Trial'; font-weight: 400;">
-            This website is under the Valudian Government and on the alpha stage. Please check later for any more updates.
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀This website is under the Valudian Government and on the alpha stage. Please check later for any more updates.
           </span>
       </div>
       <div class="govuk-footer__meta-item">

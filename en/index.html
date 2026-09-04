@@ -436,49 +436,70 @@
   <div id="form-status-msg" style="margin-top: 15px; font-size: 14px; display: none;"></div>
 </section>
 
+<section class="signup-section"> 
+  <h3>Get Launch Notifications</h3> 
+  <p>Enter your email address to receive immediate notifications when system portals and tools go live.</p> 
+  
+  <!-- Put your NEW newly generated Google Web App URL link here -->
+  <form class="signup-form" id="launch-form" action="PASTE_YOUR_NEW_WEB_APP_URL_HERE" method="POST"> 
+    <input 
+      type="email" 
+      name="email"
+      class="signup-input" 
+      placeholder="Enter your official email address" 
+      required="" 
+      aria-label="Subscriber system notification tracking form profile target input field"
+    > 
+    <button type="submit" class="signup-button" id="launch-btn">Notify Me</button> 
+  </form> 
+
+  <div id="form-status-msg" style="margin-top: 15px; font-size: 14px; display: none;"></div>
+</section>
+
 <script>
   const launchForm = document.getElementById('launch-form');
   const statusMsg = document.getElementById('form-status-msg');
   const launchBtn = document.getElementById('launch-btn');
 
-  launchForm.addEventListener('submit', async function(event) {
+  launchForm.addEventListener('submit', function(event) {
     event.preventDefault();
     
-    // Prevent double submissions while processing
     launchBtn.disabled = true;
     launchBtn.innerText = "Sending...";
     
-    // Set loading state message style properties
     statusMsg.style.display = "block";
     statusMsg.style.color = "#666";
     statusMsg.innerText = "Processing submission...";
 
     const formData = new FormData(launchForm);
 
-    try {
-      const response = await fetch(launchForm.action, {
-        method: 'POST',
-        body: formData
-      });
+    // Using a URLSearchParams string payload optimizes transport across no-cors channels
+    const searchParams = new URLSearchParams();
+    for (const pair of formData) {
+        searchParams.append(pair[0], pair[1]);
+    }
 
-      const data = await response.json();
-
-      if (data.result === 'success') {
-        statusMsg.style.color = "green";
-        statusMsg.innerText = "✓ Subscription successfully registered!";
-        launchForm.reset();
-        launchBtn.innerText = "Notified";
-      } else {
-        throw new Error(data.error);
-      }
-    } catch (error) {
+    fetch(launchForm.action, {
+      method: 'POST',
+      body: searchParams,
+      mode: 'no-cors' // Crucial: This explicitly disables CORS browser rejection bugs
+    })
+    .then(response => {
+      // Because 'no-cors' treats responses opaquely, we assume execution success if no network crash occurred
+      statusMsg.style.color = "green";
+      statusMsg.innerText = "✓ Subscription successfully registered!";
+      launchForm.reset();
+      launchBtn.innerText = "Notified";
+    })
+    .catch(error => {
       statusMsg.style.color = "red";
       statusMsg.innerText = "✕ Submission failed. Please try again later.";
       launchBtn.disabled = false;
       launchBtn.innerText = "Notify Me";
-    }
+    });
   });
 </script>
+
 
     </main>
 

@@ -1,16 +1,36 @@
-<script>
-  // Fetch the user's location information from a free IP API
-  fetch('https://ipapi.co')
-    .then(response => response.json())
-    .then(data => {
-      // Check if the country code is NOT your main country (e.g., if you want US, GB, CA to go to /en)
-      // Or explicitly check for specific English-speaking countries
-      const englishCountries = ['US', 'GB', 'CA', 'AU', 'NZ', 'IE'];
-      
-      if (englishCountries.includes(data.country_code)) {
-        // Redirect the user to the English subdirectory
-        window.location.href = '/en/index.html';
-      }
-    })
-    .catch(error => console.log('Location detection failed:', error));
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    
+    <script>
+      (function() {
+        const userLang = navigator.language || navigator.userLanguage; 
+        const baseLang = userLang.toLowerCase().split('-'); 
+
+        let targetFolder = '/en/'; 
+        
+        if (baseLang === 'es') {
+            targetFolder = '/es/';
+        } else if (baseLang === 'fr') {
+            targetFolder = '/fr/';
+        } else if (baseLang === 'de') {
+            targetFolder = '/de/';
+        } 
+
+        document.cookie = "lang_redirect_done=true; path=/; max-age=86400"; 
+
+        window.location.replace(targetFolder);
+      })();
+    </script>
+    
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/en/">
+    </noscript>
+</head>
+<body>
+    <p>Please wait while we redirect you, or <a href="/en/">click here to enter the English site</a>.</p>
+</body>
+</html>

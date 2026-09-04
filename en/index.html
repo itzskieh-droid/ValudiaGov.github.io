@@ -416,14 +416,69 @@
         </div>
 
         
-        <section class="signup-section">
-            <h3>Get Launch Notifications</h3>
-            <p>Enter your email address to receive immediate notifications when system portals and tools go live.</p>
-            <form class="signup-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Subscription successfully registered!');">
-                <input type="email" class="signup-input" placeholder="Enter your official email address" required="" aria-label="Subscriber system notification tracking form profile target input field">
-                <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; display: initial !important; float: left !important;"></div><button type="submit" font="" class="signup-button">Notify Me</button>
-            </form>
-        </section>
+   <section class="signup-section"> 
+  <h3>Get Launch Notifications</h3> 
+  <p>Enter your email address to receive immediate notifications when system portals and tools go live.</p> 
+  
+  <!-- 1. Added form ID, name attribute to input, and replaced action with a real endpoint -->
+  <form class="signup-form" id="launch-form" action="https://formspree.io" method="POST"> 
+    <input 
+      type="email" 
+      name="email"
+      class="signup-input" 
+      placeholder="Enter your official email address" 
+      required="" 
+      aria-label="Subscriber system notification tracking form profile target input field"
+    > 
+    <button type="submit" class="signup-button" id="launch-btn">Notify Me</button> 
+  </form> 
+
+  <!-- 2. UI Container to show success or error states to the user -->
+  <div id="form-status-msg" style="margin-top: 15px; font-size: 14px; display: none;"></div>
+</section>
+
+<script>
+  const launchForm = document.getElementById('launch-form');
+  const statusMsg = document.getElementById('form-status-msg');
+  const launchBtn = document.getElementById('launch-btn');
+
+  launchForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    // Prevent double submissions
+    launchBtn.disabled = true;
+    launchBtn.innerText = "Sending...";
+    
+    // Reset status UI
+    statusMsg.style.display = "block";
+    statusMsg.style.color = "#666";
+    statusMsg.innerText = "Processing submission...";
+
+    try {
+      const response = await fetch(launchForm.action, {
+        method: 'POST',
+        body: new FormData(launchForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        // Success state
+        statusMsg.style.color = "green";
+        statusMsg.innerText = "✓ Subscription successfully registered!";
+        launchForm.reset();
+        launchBtn.innerText = "Notified";
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      // Error state
+      statusMsg.style.color = "red";
+      statusMsg.innerText = "✕ Submission failed. Please try again later.";
+      launchBtn.disabled = false;
+      launchBtn.innerText = "Notify Me";
+    }
+  });
+</script>
     </main>
 
     

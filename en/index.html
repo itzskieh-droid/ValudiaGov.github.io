@@ -416,12 +416,11 @@
         </div>
 
         
-   <section class="signup-section"> 
+<section class="signup-section"> 
   <h3>Get Launch Notifications</h3> 
   <p>Enter your email address to receive immediate notifications when system portals and tools go live.</p> 
   
-  <!-- 1. Added form ID, name attribute to input, and replaced action with a real endpoint -->
-  <form class="signup-form" id="launch-form" action="https://formspree.io" method="POST"> 
+  <form class="signup-form" id="launch-form" action="https://script.google.com/macros/s/AKfycbyCjyVK_xX-YKwkVkVqRx1FgJgdSHI8arc3KhW4JeTHVGQbYt9x0jMobMDYjCTV2ypo/exec" method="POST"> 
     <input 
       type="email" 
       name="email"
@@ -433,7 +432,7 @@
     <button type="submit" class="signup-button" id="launch-btn">Notify Me</button> 
   </form> 
 
-  <!-- 2. UI Container to show success or error states to the user -->
+  <!-- Inline feedback UI message placeholder element -->
   <div id="form-status-msg" style="margin-top: 15px; font-size: 14px; display: none;"></div>
 </section>
 
@@ -445,33 +444,34 @@
   launchForm.addEventListener('submit', async function(event) {
     event.preventDefault();
     
-    // Prevent double submissions
+    // Prevent double submissions while processing
     launchBtn.disabled = true;
     launchBtn.innerText = "Sending...";
     
-    // Reset status UI
+    // Set loading state message style properties
     statusMsg.style.display = "block";
     statusMsg.style.color = "#666";
     statusMsg.innerText = "Processing submission...";
 
+    const formData = new FormData(launchForm);
+
     try {
       const response = await fetch(launchForm.action, {
         method: 'POST',
-        body: new FormData(launchForm),
-        headers: { 'Accept': 'application/json' }
+        body: formData
       });
 
-      if (response.ok) {
-        // Success state
+      const data = await response.json();
+
+      if (data.result === 'success') {
         statusMsg.style.color = "green";
         statusMsg.innerText = "✓ Subscription successfully registered!";
         launchForm.reset();
         launchBtn.innerText = "Notified";
       } else {
-        throw new Error();
+        throw new Error(data.error);
       }
     } catch (error) {
-      // Error state
       statusMsg.style.color = "red";
       statusMsg.innerText = "✕ Submission failed. Please try again later.";
       launchBtn.disabled = false;
@@ -479,6 +479,7 @@
     }
   });
 </script>
+
     </main>
 
     

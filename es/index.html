@@ -1,0 +1,573 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValudiaGov | Incio</title>
+    <style>
+        /* Modern System CSS Variable Color Palette Definitions */
+        :root {
+            --primary-blue: #1d70b8;
+            --primary-dark: #00457c;
+            --text-dark: #333333;
+            --text-muted: #555555;
+            --bg-light: #f8f9fa;
+            --border-color: #dddddd;
+            --panel-tint: #f0f4f8;
+        }
+
+        /* Clean System Font Stack Configurations */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 1. NO-JS INTERACTIVE GOVERNMENT BANNER STYLES */
+        .gov-banner-wrapper {
+            width: 100%;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            z-index: 9999;
+        }
+
+        .gov-banner {
+            padding: 8px 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .gov-banner-left {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Flag Image Custom Properties */
+        .flag-icon {
+            height: 11px;
+            width: auto;
+            margin-right: 8px;
+            display: inline-block;
+            outline: 1px solid #cccccc;
+            outline-offset: 0;
+            vertical-align: middle;
+        }
+
+        .gov-toggle-btn {
+            color: var(--primary-blue);
+            text-decoration: underline;
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            user-select: none;
+        }
+
+        .gov-toggle-btn .arrow-icon {
+            font-size: 8px;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+        
+        .gov-dropdown-panel {
+            display: none !important; /* Default hidden state wrapper layout */
+            background-color: var(--panel-tint);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* CSS Architecture Logic Toggles */
+        #gov-banner-toggle:checked ~ .gov-dropdown-panel {
+            display: block !important;
+        }
+
+        #gov-banner-toggle:checked ~ .gov-banner .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .gov-dropdown-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .gov-explanation-column {
+            flex: 1;
+            font-size: 13px;
+            color: var(--text-dark);
+            text-align: left;
+        }
+
+        .gov-explanation-column strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #111111;
+        }
+
+        .gov-explanation-column p {
+            margin: 0;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        /* 2. PRIMARY NAVIGATION HEADER */
+        .main-header {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-brand h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* 3. STRUCTURAL CONTENT CONTAINER LAYOUTS */
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+            flex: 1;
+            box-sizing: border-box;
+        }
+
+        .construction-heading {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .status-message {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Alpha Platform Callout Info Box */
+        .info-box {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            max-width: 640px;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            margin-bottom: 40px;
+            box-sizing: border-box;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--panel-tint);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Interactive Newsletter Alerts Section Block */
+        .signup-section {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 30px;
+            max-width: 540px;
+            margin: 0 auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            box-sizing: border-box;
+        }
+
+        .signup-section h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .signup-section p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .signup-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .signup-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .signup-input:focus {
+            outline: 2px solid var(--primary-blue);
+            border-color: transparent;
+        }
+
+        .signup-button {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .signup-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* 4. FOOTER POSITIONING */
+        footer {
+            border-top: 1px solid var(--border-color);
+            background-color: #ffffff;
+            padding: 15px 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* 5. RESPONSIVE MEDIA ADJUSTMENT LAYERS */
+        @media (max-width: 650px) {
+            .gov-banner {
+                flex-direction: column;
+                gap: 6px;
+                text-align: center;
+            }
+            .gov-dropdown-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-menu {
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+            .nav-menu a {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .info-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            .signup-form {
+                flex-direction: column;
+            }
+            .container {
+                margin: 30px auto;
+            }
+        }
+    
+.navbar {
+  display: flex;
+  align-items: center;         /* Centers everything vertically */
+  justify-content: space-between; /* Pushes logo left and links right */
+  background-color: #1a65b1;   /* Matches your blue background */
+  padding: 10px 20px;          /* Adds breathing room */
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;         /* Centers the logo image with the text */
+  gap: 10px;                  
+}
+        #site-lang-picker {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  margin-left: 15px; /* Adds space after the 'About' link */
+  transition: border-color 0.2s;
+}
+
+#site-lang-picker:hover {
+  border-color: #ffffff;
+}
+
+/* Style the popup choices overlay box container */
+#site-lang-picker option {
+  background-color: #1d70b8; /* Matches your header background color profile */
+  color: #ffffff;
+}
+
+</style>
+<style>undefined</style></head>
+<body>
+
+    
+    <div class="gov-banner-wrapper">
+        <div class="gov-banner">
+            <div class="gov-banner-left">
+                <!-- Swapped flag placeholder for the designated image resource file -->
+                <img src="./ValudiaGov _ Home_files/CoaMaker (2).png" alt="Valudian Flag" class="flag-icon">
+                <span>Un sitio web oficial del gobierno de Valudia.</span>
+            </div>
+            <div>
+                <label for="gov-banner-toggle" class="gov-toggle-btn">
+                    Aquí se explica cómo saberlo. <span class="arrow-icon"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Hidden checkbox logic block -->
+        <input type="checkbox" id="gov-banner-toggle" style="display: none !important;">
+
+        <!-- Expanding Informational Panel Drawer -->
+        <div class="gov-dropdown-panel">
+            <div class="gov-dropdown-content">
+                
+                <div class="gov-explanation-column">
+                    <strong>Los sitios web oficiales usan .org</strong>
+                    <p>Las URL de los sitios web oficiales del gobierno terminan en .org. Antes de compartir información confidencial, asegúrese de estar en un sitio web oficial del gobierno.</p>
+                </div>
+            <div class="gov-explanation-column">
+                    <strong>Los sitios web oficiales seguros usan HTTPS</strong>
+                    <p>El https:// garantiza que se está conectando al sitio web oficial y que cualquier información que proporcione se encripte y se transmita de forma segura.</p>
+                </div></div>
+        </div>
+    </div>
+
+    
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-brand"><img src="./ValudiaGov _ Home_files/valudiagov1.png" style="height: 40px; width: auto; vertical-align: middle;" <="" div=""></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="https://valudia.org/en/#servicios">Servicios</a></li>
+                    <li><a href="https://valudia.org/en/#entidades">Entidades</a></li>
+                    <li><a href="https://valudia.org/en/#noticias">Noticias</a></li>
+                    <li><a href="https://valudia.org/en/#nosotros">Nosotros</a></li>
+                    <li class="nav-item lang-selector-container">
+                      <select id="site-lang-picker" aria-label="Select Language" onchange="changeSiteLanguage(this.value)">
+                        <option value="en">English</option>
+                         <option value="es">Español</option>
+                            <option value="fr">Français</option>
+    <!-- Add more languages as needed -->
+  </select>
+</li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <main class="container">
+        <h2 class="construction-heading">🚧 Esta página está en construcción.</h2>
+        <p class="status-message">Este sitio web se encuentra actualmente en desarrollo. Por favor, vuelva más tarde para ver las actualizaciones.</p>
+
+        <!-- Dynamic Content Information Display Section Callout Card -->
+        <div class="info-box">
+            <div class="info-icon">i</div>
+            <div>
+                Este sitio web es operado por el Gobierno de Valudia y actualmente se encuentra en su etapa alfa. Por favor, vuelva más tarde para más actualizaciones.
+            </div>
+        </div>
+
+        
+<section class="signup-section"> 
+  <h3>Recibir notificaciones de lanzamiento</h3> 
+  <p>Ingrese su dirección de correo electrónico para recibir notificaciones inmediatas cuando los portales y herramientas del sistema estén en línea.</p> 
+  
+  <!-- Put your NEW newly generated Google Web App URL link here -->
+  <form class="signup-form" id="launch-form" action="https://script.google.com/macros/s/AKfycbxMIKiBcy20-zYO4IsoBYDaEsFn8R08jz89SDmRXO4bhYceFsBHmbI28VTtnUt6F_Ch/exec" method="POST"> 
+    <div style="display:none;">
+  <label for="honeypot_field">Leave this field blank</label>
+  <input type="text" id="honeypot_field" name="honeypot_field" autocomplete="off">
+</div>
+      <input type="email" name="email" class="signup-input" placeholder="Ingrese su dirección de correo electrónico oficial" required="" aria-label="Subscriber system notification tracking form profile target input field"> 
+    <button type="submit" class="signup-button" id="launch-btn">Notificarme</button> 
+  </form> 
+
+  <div id="form-status-msg" style="margin-top: 15px; font-size: 14px; display: none;"></div>
+<div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; display: initial !important; float: left !important;"><template shadowrootmode="closed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-lastpass-icon="true" data-testid="infield-icon" style="position: absolute; cursor: pointer; height: 22px; max-height: 22px; width: 22px; max-width: 22px; top: -45.5715px; left: 310.83px; z-index: auto; color: rgb(186, 192, 202);"><rect x="0.680176" y="0.763062" width="22.6392" height="22.4737" rx="4" fill="currentColor"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M19.7935 7.9516C19.7935 7.64414 20.0427 7.3949 20.3502 7.3949C20.6576 7.3949 20.9069 7.64414 20.9069 7.9516V16.0487C20.9069 16.3562 20.6576 16.6054 20.3502 16.6054C20.0427 16.6054 19.7935 16.3562 19.7935 16.0487V7.9516Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M4.76288 13.6577C5.68525 13.6577 6.43298 12.9154 6.43298 11.9998C6.43298 11.0842 5.68525 10.3419 4.76288 10.3419C3.8405 10.3419 3.09277 11.0842 3.09277 11.9998C3.09277 12.9154 3.8405 13.6577 4.76288 13.6577Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M10.3298 13.6577C11.2521 13.6577 11.9999 12.9154 11.9999 11.9998C11.9999 11.0842 11.2521 10.3419 10.3298 10.3419C9.4074 10.3419 8.65967 11.0842 8.65967 11.9998C8.65967 12.9154 9.4074 13.6577 10.3298 13.6577Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M15.8964 13.6577C16.8188 13.6577 17.5665 12.9154 17.5665 11.9998C17.5665 11.0842 16.8188 10.3419 15.8964 10.3419C14.974 10.3419 14.2263 11.0842 14.2263 11.9998C14.2263 12.9154 14.974 13.6577 15.8964 13.6577Z" fill="white"></path></svg></template></div></section>
+
+<script>
+  const launchForm = document.getElementById('launch-form');
+  const statusMsg = document.getElementById('form-status-msg');
+  const launchBtn = document.getElementById('launch-btn');
+
+  launchForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const honeypot = document.getElementById('honeypot_field').value;
+    if (honeypot) {
+
+        statusMsg.style.display = "block";
+        statusMsg.style.color = "green";
+        statusMsg.innerText = "✓ ¡Suscripción registrada con éxito!";
+        launchForm.reset(); 
+        return; 
+    }
+
+    launchBtn.disabled = true;
+    launchBtn.innerText = "Enviando...";
+    
+    statusMsg.style.display = "block";
+    statusMsg.style.color = "#666";
+    statusMsg.innerText = "Procesando envío...";
+
+    const formData = new FormData(launchForm);
+    const searchParams = new URLSearchParams();
+    for (const pair of formData) {
+        searchParams.append(pair[0], pair[1]);
+    }
+
+    fetch(launchForm.action, {
+      method: 'POST',
+      body: searchParams,
+      mode: 'no-cors' 
+    })
+    .then(response => {
+      statusMsg.style.color = "green";
+      statusMsg.innerText = "✓ ¡Suscripción registrada con éxito!";
+      launchForm.reset(); 
+      launchBtn.innerText = "Notificado";
+    })
+    .catch(error => {
+      statusMsg.style.color = "red";
+      statusMsg.innerText = "✕ El envío falló. Por favor, inténtelo de nuevo más tarde.";
+      launchBtn.disabled = false;
+      launchBtn.innerText = "Notificarme";
+    });
+  });
+</script>
+
+
+
+    </main>
+
+    
+    <footer>
+        <div class="footer-content">
+            <div>© Gobierno de Valudia 2026</div>
+        </div>
+    </footer>
+
+    <script>
+  function changeSiteLanguage(targetLang) {
+    // 1. Establish the maximum duration cookie rule to honor user intent 
+    document.cookie = "lang_redirect_done=true; path=/; max-age=86400";
+
+    const currentPath = window.location.pathname;
+    
+    // 2. Identify and cleanly extract current localized directory keys
+    // This regex looks for /en/, /es/, /fr/, etc. at the start of your path
+    const langRegex = /^\/(en|es|fr)\//;
+    
+    let newPath;
+    if (langRegex.test(currentPath)) {
+        // Swap out the existing language folder code for the new selection target
+        newPath = currentPath.replace(langRegex, '/' + targetLang + '/');
+    } else {
+        // If they are on a root path with no folder identifier, append it cleanly
+        newPath = '/' + targetLang + currentPath;
+    }
+    
+    // 3. Complete the client-side navigation routine
+    window.location.href = newPath;
+  }
+
+  // 4. Auto-highlight the current language options variant during execution paint
+  document.addEventListener("DOMContentLoaded", function() {
+    const langPicker = document.getElementById('site-lang-picker');
+    const pathMatch = window.location.pathname.match(/^\/(en|es|fr)\//);
+    
+    if (pathMatch && langPicker) {
+        langPicker.value = pathMatch[1];
+    } else if (langPicker) {
+        langPicker.value = 'en'; // Default fallback highlight state
+    }
+  });
+</script>
+
+
+<script type="module" src="./ValudiaGov _ Home_files/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;db35d1116ebc4e06865516c2d64c7f2c&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+
+</body></html>

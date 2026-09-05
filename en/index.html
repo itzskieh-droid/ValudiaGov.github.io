@@ -350,6 +350,31 @@
   align-items: center;         /* Centers the logo image with the text */
   gap: 10px;                  
 }
+        #site-lang-picker {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  margin-left: 15px; /* Adds space after the 'About' link */
+  transition: border-color 0.2s;
+}
+
+#site-lang-picker:hover {
+  border-color: #ffffff;
+}
+
+/* Style the popup choices overlay box container */
+#site-lang-picker option {
+  background-color: #1d70b8; /* Matches your header background color profile */
+  color: #ffffff;
+}
+
 </style>
 </head>
 <body>
@@ -397,6 +422,15 @@
                     <li><a href="#agencies">Agencies</a></li>
                     <li><a href="#news">News</a></li>
                     <li><a href="#about">About</a></li>
+                    <li class="nav-item lang-selector-container">
+                      <select id="site-lang-picker" aria-label="Select Language" onchange="changeSiteLanguage(this.value)">
+                        <option value="en">English</option>
+                         <option value="es">Español</option>
+                            <option value="fr">Français</option>
+    <!-- Add more languages as needed -->
+  </select>
+</li>
+
                 </ul>
             </nav>
         </div>
@@ -501,6 +535,43 @@
             <div>© Valudian Government 2026</div>
         </div>
     </footer>
+
+    <script>
+  function changeSiteLanguage(targetLang) {
+    // 1. Establish the maximum duration cookie rule to honor user intent 
+    document.cookie = "lang_redirect_done=true; path=/; max-age=86400";
+
+    const currentPath = window.location.pathname;
+    
+    // 2. Identify and cleanly extract current localized directory keys
+    // This regex looks for /en/, /es/, /fr/, etc. at the start of your path
+    const langRegex = /^\/(en|es|fr)\//;
+    
+    let newPath;
+    if (langRegex.test(currentPath)) {
+        // Swap out the existing language folder code for the new selection target
+        newPath = currentPath.replace(langRegex, '/' + targetLang + '/');
+    } else {
+        // If they are on a root path with no folder identifier, append it cleanly
+        newPath = '/' + targetLang + currentPath;
+    }
+    
+    // 3. Complete the client-side navigation routine
+    window.location.href = newPath;
+  }
+
+  // 4. Auto-highlight the current language options variant during execution paint
+  document.addEventListener("DOMContentLoaded", function() {
+    const langPicker = document.getElementById('site-lang-picker');
+    const pathMatch = window.location.pathname.match(/^\/(en|es|fr)\//);
+    
+    if (pathMatch && langPicker) {
+        langPicker.value = pathMatch[1];
+    } else if (langPicker) {
+        langPicker.value = 'en'; // Default fallback highlight state
+    }
+  });
+</script>
 
 
 </body>

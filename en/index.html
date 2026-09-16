@@ -375,22 +375,30 @@
   color: #ffffff;
 }
 
-        .header-clock-ticker {
+/* Container holding the navigation items on the right side */
+.nav-links-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-clock-ticker {
   color: #ffffff;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   font-size: 14px;
-  display: inline-block;
-  margin-right: 20px; /* Adjust based on your header layout spacing */
+  font-weight: 500;
+  margin-right: 24px; /* Creates spacing between clock and language selector */
+  white-space: nowrap; /* Prevents time from wrapping into two lines */
 }
 
 .fade-text {
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
   opacity: 1;
 }
 
 .fade-out {
   opacity: 0;
 }
+
 
 </style>
 </head>
@@ -444,13 +452,13 @@
                         <option value="en">English</option>
                          <option value="es">Español</option>
                             <option value="fr">Français</option>
-                          <div class="header-clock-ticker">
-  <span id="header-location" class="fade-text"></span>: 
-  <span id="header-time"></span>
-</div>
+ <div class="header-clock-ticker">
+    <span id="header-location" class="fade-text"></span>: 
+    <span id="header-time"></span>
+  </div>
 
                           <script>
-                              const locations = [
+  const locations = [
   { name: "Kordavia-Verdania", zone: "America/Chicago" },
   { name: "Kirania", zone: "America/Bogota" },
 ];
@@ -469,40 +477,38 @@ function formatTime(zone) {
 
 function updateClockNumbers() {
   const currentLocation = locations[currentIndex];
-  document.getElementById('header-time').textContent = formatTime(currentLocation.zone);
+  const timeEl = document.getElementById('header-time');
+  if (timeEl) {
+    timeEl.textContent = formatTime(currentLocation.zone);
+  }
 }
 
 function rotateLocation() {
   const locationEl = document.getElementById('header-location');
+  if (!locationEl) return;
   
-  // 1. Trigger fade out animation
   locationEl.classList.add('fade-out');
   
-  // 2. Wait for fade out to complete (300ms) before changing text
   setTimeout(() => {
     currentIndex = (currentIndex + 1) % locations.length;
     locationEl.textContent = locations[currentIndex].name;
     updateClockNumbers();
-    
-    // 3. Fade back in
     locationEl.classList.remove('fade-out');
-  }, 300);
+  }, 250); 
 }
 
 function initHeaderClock() {
-  // Set initial text instantly
-  document.getElementById('header-location').textContent = locations[currentIndex].name;
-  updateClockNumbers();
-  
-  // Keep the digital seconds ticking correctly every 1 second
-  setInterval(updateClockNumbers, 1000);
-  
-  // Swap the location target exactly every 5 seconds
-  setInterval(rotateLocation, 5000);
+  const locationEl = document.getElementById('header-location');
+  if (locationEl) {
+    locationEl.textContent = locations[currentIndex].name;
+    updateClockNumbers();
+    setInterval(updateClockNumbers, 1000);
+    setInterval(rotateLocation, 5000);
+  }
 }
 
-// Run setup when DOM is ready
 document.addEventListener("DOMContentLoaded", initHeaderClock);
+
                           </script>
     <!-- Add more languages as needed -->
   </select>

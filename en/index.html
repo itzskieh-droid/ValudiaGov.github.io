@@ -375,6 +375,23 @@
   color: #ffffff;
 }
 
+        .header-clock-ticker {
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  display: inline-block;
+  margin-right: 20px; /* Adjust based on your header layout spacing */
+}
+
+.fade-text {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
 </style>
 </head>
 <body>
@@ -427,6 +444,66 @@
                         <option value="en">English</option>
                          <option value="es">Español</option>
                             <option value="fr">Français</option>
+                          <div class="header-clock-ticker">
+  <span id="header-location" class="fade-text"></span>: 
+  <span id="header-time"></span>
+</div>
+
+                          <script>
+                              const locations = [
+  { name: "Kordavia-Verdania", zone: "America/Chicago" },
+  { name: "Kirania", zone: "America/Bogota" },
+];
+
+let currentIndex = 0;
+
+function formatTime(zone) {
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone: zone,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  }).format(new Date());
+}
+
+function updateClockNumbers() {
+  const currentLocation = locations[currentIndex];
+  document.getElementById('header-time').textContent = formatTime(currentLocation.zone);
+}
+
+function rotateLocation() {
+  const locationEl = document.getElementById('header-location');
+  
+  // 1. Trigger fade out animation
+  locationEl.classList.add('fade-out');
+  
+  // 2. Wait for fade out to complete (300ms) before changing text
+  setTimeout(() => {
+    currentIndex = (currentIndex + 1) % locations.length;
+    locationEl.textContent = locations[currentIndex].name;
+    updateClockNumbers();
+    
+    // 3. Fade back in
+    locationEl.classList.remove('fade-out');
+  }, 300);
+}
+
+function initHeaderClock() {
+  // Set initial text instantly
+  document.getElementById('header-location').textContent = locations[currentIndex].name;
+  updateClockNumbers();
+  
+  // Keep the digital seconds ticking correctly every 1 second
+  setInterval(updateClockNumbers, 1000);
+  
+  // Swap the location target exactly every 5 seconds
+  setInterval(rotateLocation, 5000);
+}
+
+// Run setup when DOM is ready
+document.addEventListener("DOMContentLoaded", initHeaderClock);
+                          </script>
     <!-- Add more languages as needed -->
   </select>
 </li>

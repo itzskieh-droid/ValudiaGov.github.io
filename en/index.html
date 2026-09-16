@@ -441,26 +441,26 @@
     <header class="main-header">
         <div class="header-content">
             <div class="header-brand"><img src="https://valudia.org/images/valudiagov2.png" style="height: 40px; width: auto; vertical-align: middle;" <="" div=""></div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#agencies">Agencies</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li class="nav-item lang-selector-container">
-                      <select id="site-lang-picker" aria-label="Select Language" onchange="changeSiteLanguage(this.value)">
-                        <option value="en">English</option>
-                         <option value="es">Español</option>
-                            <option value="fr">Français</option>
- <div class="header-clock-ticker">
-<span id="header-location" class="fade-text"></span>
-<span id="header-time"></span>
+<nav>
+      <ul class="nav-menu">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#agencies">Agencies</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#about">About</a></li>
+        
+        <!-- Language selector item comes first -->
+        <li class="nav-item lang-selector-container">
+          <select id="site-lang-picker" aria-label="Select Language" onchange="changeSiteLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+          </select>
+        </li>
 
-  </div>
-    <!-- Add more languages as needed -->
-  </select>
-</li>
-
+        <li class="nav-item-clock">
+          <div class="header-clock-ticker">
+            <span id="header-location" class="fade-text"></span>: 
+            <span id="header-time"></span>
                 </ul>
             </nav>
         </div>

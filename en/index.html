@@ -382,21 +382,34 @@
 }
 
 .header-clock-ticker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Aligns both rows neatly to the left edge of the clock box */
   color: #ffffff;
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  margin-right: 24px; /* Creates spacing between clock and language selector */
-  white-space: nowrap; /* Prevents time from wrapping into two lines */
+  font-family: Arial, sans-serif;
+  line-height: 1.2; /* Tightens the gap between the two stacked text lines */
+  white-space: nowrap;
+}
+
+#header-location {
+  font-size: 11px; /* Smaller metadata label look */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8; /* Subtle transparency difference for the location name */
+}
+
+#header-time {
+  font-size: 14px; /* Distinct, larger numbers below */
+  font-weight: bold;
 }
 
 .fade-text {
   transition: opacity 0.25s ease-in-out;
-  opacity: 1;
 }
 
 .fade-out {
-  opacity: 0;
+  opacity: 0 !important; /* Force opacity to zero during rotation fade */
 }
 
 
@@ -457,10 +470,12 @@
           </select>
         </li>
 
-        <li class="nav-item-clock">
-          <div class="header-clock-ticker">
-            <span id="header-location" class="fade-text"></span>: 
-            <span id="header-time"></span>
+<li class="nav-item-clock">
+  <div class="header-clock-ticker">
+    <div id="header-location" class="fade-text"></div>
+    <div id="header-time">
+        
+    </div>
                 </ul>
             </nav>
         </div>

@@ -453,63 +453,10 @@
                          <option value="es">Español</option>
                             <option value="fr">Français</option>
  <div class="header-clock-ticker">
-    <span id="header-location" class="fade-text"></span>: 
-    <span id="header-time"></span>
+<span id="header-location" class="fade-text"></span>
+<span id="header-time"></span>
+
   </div>
-
-                          <script>
-  const locations = [
-  { name: "Kordavia-Verdania", zone: "America/Chicago" },
-  { name: "Kirania", zone: "America/Bogota" },
-];
-
-let currentIndex = 0;
-
-function formatTime(zone) {
-  return new Intl.DateTimeFormat('en-US', {
-    timeZone: zone,
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true
-  }).format(new Date());
-}
-
-function updateClockNumbers() {
-  const currentLocation = locations[currentIndex];
-  const timeEl = document.getElementById('header-time');
-  if (timeEl) {
-    timeEl.textContent = formatTime(currentLocation.zone);
-  }
-}
-
-function rotateLocation() {
-  const locationEl = document.getElementById('header-location');
-  if (!locationEl) return;
-  
-  locationEl.classList.add('fade-out');
-  
-  setTimeout(() => {
-    currentIndex = (currentIndex + 1) % locations.length;
-    locationEl.textContent = locations[currentIndex].name;
-    updateClockNumbers();
-    locationEl.classList.remove('fade-out');
-  }, 250); 
-}
-
-function initHeaderClock() {
-  const locationEl = document.getElementById('header-location');
-  if (locationEl) {
-    locationEl.textContent = locations[currentIndex].name;
-    updateClockNumbers();
-    setInterval(updateClockNumbers, 1000);
-    setInterval(rotateLocation, 5000);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", initHeaderClock);
-
-                          </script>
     <!-- Add more languages as needed -->
   </select>
 </li>
@@ -656,6 +603,59 @@ document.addEventListener("DOMContentLoaded", initHeaderClock);
   });
 </script>
 
+<script>
+      const locations = [
+  { name: "Kordavia-Verdania", zone: "America/Chicago" },
+  { name: "Kirania", zone: "America/Bogota" },
+];
+
+let currentIndex = 0;
+
+function formatTime(zone) {
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone: zone,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  }).format(new Date());
+}
+
+function updateClockNumbers() {
+  const currentLocation = locations[currentIndex];
+  const timeEl = document.getElementById('header-time');
+  if (timeEl) {
+    timeEl.textContent = formatTime(currentLocation.zone);
+  }
+}
+
+function rotateLocation() {
+  const locationEl = document.getElementById('header-location');
+  if (!locationEl) return;
+  
+  locationEl.classList.add('fade-out');
+  
+  setTimeout(() => {
+    currentIndex = (currentIndex + 1) % locations.length;
+    locationEl.textContent = locations[currentIndex].name;
+    updateClockNumbers();
+    locationEl.classList.remove('fade-out');
+  }, 250); 
+}
+
+function initHeaderClock() {
+  const locationEl = document.getElementById('header-location');
+  if (locationEl) {
+    locationEl.textContent = locations[currentIndex].name;
+    updateClockNumbers();
+    setInterval(updateClockNumbers, 1000);
+    setInterval(rotateLocation, 5000);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", initHeaderClock);
+
+</script>
 
 </body>
 </html>

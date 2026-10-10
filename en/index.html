@@ -135,16 +135,14 @@ body {
             align-items: center;
         }
 
-        .header-content {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+.header-content {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;     /* Prevents elements from dropping to a new line */
+  justify-content: space-between;  /* Pushes logo to the left, menus/clock to the right */
+  align-items: center !important;   /* Centers all items perfectly on a vertical axis */
+  width: 100%;
+}
 
         .header-brand h1 {
             margin: 0;
@@ -164,21 +162,22 @@ body {
 .nav-menu {
   display: flex !important;
   flex-direction: row !important;
+  flex-wrap: nowrap !important;
   align-items: center !important;
-  list-style: none !important;    /* This completely deletes that bullet point */
-  padding: 0 !important;
+  list-style: none !important;
   margin: 0 !important;
-  gap: 20px;                      /* Controls spacing between links */
+  padding: 0 !important;
+  gap: 20px;                        /* Spacing between your text links and select box */
 }
 
 /* 2. Fix the clock container so it stays inline next to the language picker */
 .nav-item-clock {
-  list-style: none !important;    /* Ensures no bullet points touch the clock */
+  list-style: none !important;
   display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  text-align: left;
-  margin-left: 20px;              /* Creates separation from the dropdown */
+  flex-direction: row !important;    /* Forces location and time onto a single line */
+  align-items: center !important;
+  gap: 10px;                        /* Horizontal gap between location and time text */
+  white-space: nowrap !important;   /* Prevents the text from splitting into two rows */
 }
 
 /* Ensure links display properly */

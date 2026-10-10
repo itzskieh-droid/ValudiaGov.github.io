@@ -159,6 +159,7 @@ body {
             list-style: none;
             margin: 0;
             padding: 0;
+            align-items: center;
         }
 
         .nav-menu a {
@@ -169,6 +170,7 @@ body {
             padding: 6px 12px;
             border-radius: 4px;
             transition: background-color 0.2s;
+            align-items: center;
         }
 
         .nav-menu a:hover {
@@ -320,11 +322,13 @@ body {
                 flex-direction: column;
                 gap: 8px;
                 width: 100%;
+                align-items: center;
             }
             .nav-menu a {
                 display: block;
                 width: 100%;
                 box-sizing: border-box;
+                text-align: center;
             }
             .info-box {
                 flex-direction: column;
@@ -389,7 +393,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   color: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans", sans-serif;
   line-height: 1.2;
   
   width: 140px;           
@@ -484,6 +488,7 @@ body {
     <div id="header-time">
         
     </div>
+                </li>
                 </ul>
             </nav>
         </div>
@@ -494,11 +499,11 @@ body {
         <h2 class="construction-heading">🚧 This Page is Under Construction.</h2>
         <p class="status-message">This website is currently under development. Please check back later for updates.</p>
 
-        <!-- Dynamic Content Information Display Section Callout Card -->
-        <div class="info-box">
+<div class="info-box">
             <div class="info-icon">i</div>
             <div>
-                This website is operated by the Valudian Government and is currently in its alpha stage. Please check back later for further updates.
+                <p style="margin: 0; font-weight: 600; color: #111;">Notice from ValudiaGov</p>
+                <p style="margin: 4px 0 0 0; font-size: 14px; color: var(--text-muted);">This website is operated by the Valudian Government and is currently in its alpha stage. Please check back later for further updates.</p>
             </div>
         </div>
 

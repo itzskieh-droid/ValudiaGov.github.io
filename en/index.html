@@ -135,14 +135,16 @@ body {
             align-items: center;
         }
 
-.header-content {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;     /* Prevents elements from dropping to a new line */
-  justify-content: space-between;  /* Pushes logo to the left, menus/clock to the right */
-  align-items: center !important;   /* Centers all items perfectly on a vertical axis */
-  width: 100%;
-}
+        .header-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
 
         .header-brand h1 {
             margin: 0;
@@ -159,32 +161,19 @@ body {
             padding: 0;
         }
 
-.nav-menu {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  align-items: center !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  gap: 20px;                        /* Spacing between your text links and select box */
-}
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
 
-/* 2. Fix the clock container so it stays inline next to the language picker */
-.nav-item-clock {
-  list-style: none !important;
-  display: flex !important;
-  flex-direction: row !important;    /* Forces location and time onto a single line */
-  align-items: center !important;
-  gap: 10px;                        /* Horizontal gap between location and time text */
-  white-space: nowrap !important;   /* Prevents the text from splitting into two rows */
-}
-
-/* Ensure links display properly */
-.nav-menu a {
-  text-decoration: none;
-  color: white;                   /* Change to your desired color */
-}
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
 
         /* 3. STRUCTURAL CONTENT CONTAINER LAYOUTS */
         .container {
@@ -400,7 +389,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   color: #ffffff;
-  font-family: "Noto Sans";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.2;
   
   width: 140px;           
@@ -474,22 +463,20 @@ body {
         <div class="header-content">
             <div class="header-brand"><img src="https://valudia.org/images/valudiagov2.png" style="height: 40px; width: auto; vertical-align: middle;" <="" div=""></div>
 <nav>
-
-    <nav class="header-nav">
       <ul class="nav-menu">
         <li><a href="#services">Services</a></li>
         <li><a href="#agencies">Agencies</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#about">About</a></li>
-        <li class="lang-selector-container">
+        
+        <!-- Language selector item comes first -->
+        <li class="nav-item lang-selector-container">
           <select id="site-lang-picker" aria-label="Select Language" onchange="changeSiteLanguage(this.value)">
             <option value="en">English</option>
             <option value="es">Español</option>
             <option value="fr">Français</option>
           </select>
         </li>
-      </ul>
-    </nav>
 
 <li class="nav-item-clock">
   <div class="header-clock-ticker">

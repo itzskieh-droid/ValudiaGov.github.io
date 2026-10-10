@@ -161,19 +161,20 @@ body {
             padding: 0;
         }
 
-        .nav-menu a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-        }
+.nav-menu {
+  display: flex;
+  list-style: none;               /* Removes default bullet points */
+  margin: 0;
+  padding: 0;
+  align-items: center;            /* Vertically aligns select box with text links */
+  gap: 20px;                      /* Even spacing between all menu items */
+}
 
-        .nav-menu a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
+/* Ensure links display properly */
+.nav-menu a {
+  text-decoration: none;
+  color: white;                   /* Change to your desired color */
+}
 
         /* 3. STRUCTURAL CONTENT CONTAINER LAYOUTS */
         .container {

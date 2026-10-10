@@ -162,12 +162,23 @@ body {
         }
 
 .nav-menu {
-  display: flex;
-  list-style: none;               /* Removes default bullet points */
-  margin: 0;
-  padding: 0;
-  align-items: center;            /* Vertically aligns select box with text links */
-  gap: 20px;                      /* Even spacing between all menu items */
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  list-style: none !important;    /* This completely deletes that bullet point */
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 20px;                      /* Controls spacing between links */
+}
+
+/* 2. Fix the clock container so it stays inline next to the language picker */
+.nav-item-clock {
+  list-style: none !important;    /* Ensures no bullet points touch the clock */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: left;
+  margin-left: 20px;              /* Creates separation from the dropdown */
 }
 
 /* Ensure links display properly */
